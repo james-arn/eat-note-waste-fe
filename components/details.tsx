@@ -57,7 +57,7 @@ export default function Details() {
         <Checkbox defaultChecked>Ship to billing address</Checkbox>
       </GridItem>
       <GridItem colSpan={2}>
-        <Button size='lg' w='full' colorScheme='brand'>Place Order</Button>
+        <Button size='lg' w='full' variant='primary'>Place Order</Button>
       </GridItem>
     </SimpleGrid>
   </VStack>
