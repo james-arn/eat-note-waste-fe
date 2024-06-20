@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * *' 
   workflow_dispatch:
 
 jobs:
@@ -10,13 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-    - name: Run a one-line script
+    - name: Configure Git
       run: |
-        echo " " >> README.md
         git config user.name "${{ secrets.USERNAME }}"
         git config user.email "${{ secrets.EMAIL }}"
-        git add .
+
+    - name: Make a commit
+      run: |
+        echo " " >> README.md
+        git add README.md
         git commit -m "Always green!"
         git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
